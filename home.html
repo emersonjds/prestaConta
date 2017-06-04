@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="./css/jquery.mobile.icons-1.4.5.min.css">
+	<link rel="stylesheet" href="css/materialize.min.css">
+	<link rel="stylesheet" href="./icons/material.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="./node_modules/chart.js/dist/Chart.js"></script>
+</head>
+
+<body>
+
+	<div class="header1">
+		<ul class="tabs grey #fff">
+			<li class="tab">
+				<a href="home.html" class="waves-effect waves-light white-text home">
+					<i class="material-icons item-home">home</i><small>Home</small>
+				</a>
+			</li>
+
+			<li class="tab">
+				<a href="#historico" class="waves-effect waves-light white-text historico">
+					<i class="material-icons item-home">receipt</i><small>Historico</small>
+				</a>
+			</li>
+
+			<li class="tab">
+				<a href="graficos.html" class="waves-effect waves-light white-text analises">
+					<i class="material-icons item-home">assessment</i><small>Analises</small>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="main1">
+
+		<section class="sessao-home">
+			<div class="row">
+				<div class="col s12">
+					<h5>Adicionar Historico de Compras</h5>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col s12">
+					<div class="metodo-pagamento" id="leitor_pagamento">
+						<div class="leitor-de-codigo">
+							<figure>
+								<img src="./img/bar-code.png" class="responsive-img" alt="">
+							</figure>
+							<p class="center-align">Leitor de Código de barras</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col s12">
+					<div class="metodo-pagamento">
+						<div class="leitor-de-codigo">
+							<figure>
+								<img src="./img/read-number.png" class="responsive-img" alt="">
+							</figure>
+							<p class="center-align">Digite o numero</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="secao-historico hide">
+			<div class="row">
+				<div class="col s12">
+					<table class="stripped">
+						<thead>
+							<tr>
+								<th class="center-align">CNPJ</th>
+								<th class="center-align">NF</th>
+								<th class="center-align">Data</th>
+								<th class="center-align">Valor</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>00881753000153</td>
+								<td>876453728</td>
+								<td>27/05/12</td>
+								<td>R$ 300,00</td>
+							</tr>
+							<tr>
+								<td>19861350000170</td>
+								<td>657489874</td>
+								<td>26/05/12</td>
+								<td>R$180,00</td>
+							</tr>
+							<tr>
+								<td>19861350000413</td>
+								<td>765846395</td>
+								<td>31/06/12</td>
+								<td>R$ 300,00</td>
+							</tr>
+							<tr>
+								<td>00881753000153</td>
+								<td>876453728</td>
+								<td>27/05/12</td>
+								<td>R$ 212,00</td>
+							</tr>
+							<tr>
+								<td>19861350000170</td>
+								<td>657489874</td>
+								<td>26/05/12</td>
+								<td>R$180,00</td>
+							</tr>
+							<tr>
+								<td>19861350006453</td>
+								<td>765846395</td>
+								<td>31/06/12</td>
+								<td>R$ 435,00</td>
+							</tr>
+							<tr>
+								<td>00881753000153</td>
+								<td>876453728</td>
+								<td>27/05/12</td>
+								<td>R$ 300,00</td>
+							</tr>
+							<tr>
+								<td>19861350000170</td>
+								<td>657489874</td>
+								<td>26/05/12</td>
+								<td>R$29,00</td>
+							</tr>
+							<tr>
+								<td>19861350000413</td>
+								<td>765846395</td>
+								<td>31/06/12</td>
+								<td>R$ 900,00</td>
+							</tr>
+							<tr>
+								<td>00881753000153</td>
+								<td>876453728</td>
+								<td>27/05/12</td>
+								<td>R$ 300,00</td>
+							</tr>
+							<tr>
+								<td>19861350000170</td>
+								<td>657489874</td>
+								<td>26/05/12</td>
+								<td>R$29,00</td>
+							</tr>
+							<tr>
+								<td>19861350000413</td>
+								<td>765846395</td>
+								<td>31/06/12</td>
+								<td>R$ 900,00</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</section>
+
+		<section class="secao-analises hide">
+
+			<div class="row">
+				<div class="col s12">
+
+					<canvas id="myChart" width="400" height="400"></canvas>
+				</div>
+			</div>
+
+			<script>
+				var ctx = document.getElementById("myChart").getContext('2d');
+				var myChart = new Chart(ctx, {
+					type: 'bar',
+					data: {
+						labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+						datasets: [{
+							label: '# Gastos',
+							data: [12, 19, 3, 5, 2, 3],
+							backgroundColor: [
+								'rgba(255, 99, 132, 0.2)',
+								'rgba(54, 162, 235, 0.2)',
+								'rgba(255, 206, 86, 0.2)',
+								'rgba(75, 192, 192, 0.2)',
+								'rgba(153, 102, 255, 0.2)',
+								'rgba(255, 159, 64, 0.2)'
+							],
+							borderColor: [
+								'rgba(255,99,132,1)',
+								'rgba(54, 162, 235, 1)',
+								'rgba(255, 206, 86, 1)',
+								'rgba(75, 192, 192, 1)',
+								'rgba(153, 102, 255, 1)',
+								'rgba(255, 159, 64, 1)'
+							],
+							borderWidth: 1
+						}]
+					},
+					options: {
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								}
+							}]
+						}
+					}
+				});
+			</script>
+		</section>
+
+		</main>
+
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/materialize.min.js"></script>
+		<script src="./js/script.js"></script>
+
+</body>
+
+
+
+
+</html>
